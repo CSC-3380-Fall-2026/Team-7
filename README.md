@@ -1,6 +1,6 @@
-# [Name of the Project] : [Team Number]
+# Globetrotter : [Team Number 7]
 # Members
-Project Manager: Diamond Lewis ([GitHub Name])\
+Project Manager: Diamond Lewis ([dlew137])\
 Communications Lead: Reagan Mangram ([GitHub Name])\
 Git Master: Jermiah Holmes ([GitHub Name])\
 Design Lead: Chasity Hampton ([GitHub Name])\
@@ -16,7 +16,7 @@ Describe a little about what the project is about here.
 - Linux
 - Windows
 # Important Links
-Kanban Board: [link]\
+Kanban Board: [link]\https://globetrotter1.atlassian.net/?continue=https%3A%2F%2Fglobetrotter1.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10000&atlOrigin=eyJpIjoiZGQ2MjZiYzFkMzgxNDcwMmI4YzRiODg0MTM3NjBlNzQiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
 Designs: [link]\
 Styles Guide(s): [link]
 
