@@ -1,10 +1,10 @@
 # [Name of the Project] : [Team Number]
 # Members
-Project Manager: [Name] ([GitHub Name])\
-Communications Lead: [Name] ([GitHub Name])\
-Git Master: [Name] ([GitHub Name])\
-Design Lead: [Name] ([GitHub Name])\
-Quality Assurance Tester: [Name] ([GitHub Name])
+Project Manager: Diamond Lewis ([GitHub Name])\
+Communications Lead: Reagan Mangram ([GitHub Name])\
+Git Master: Jermiah Holmes ([GitHub Name])\
+Design Lead: Chasity Hampton ([GitHub Name])\
+Quality Assurance Tester: Daylen Doucet ([GitHub Name])
 
 # About Our Software
 
