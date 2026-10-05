@@ -1,55 +1,69 @@
 # Globetrotter : [Team Number 7]
+
 # Members
 Project Manager: Diamond Lewis ([dlew137])\
 Communications Lead: Reagan Mangram ([GitHub Name])\
-Git Master: Jermiah Holmes ([GitHub Name])\
+Git Master: Jermiah Holmes (Jerry0555)\
 Design Lead: Chastity Hampton ([GitHub Name])\
 Quality Assurance Tester: Daylen Doucet ([GitHub Name])
 
 # About Our Software
 
-Describe a little about what the project is about here.
+Globetrotter is a travel web app that matches users with vacation destinations based on their preferences. Users swipe through destination cards and save the ones they like, and the app adjusts its suggestions to their choices. It also includes a trip planner and a vacation budget planner that finds the best pricing at that time.
+
 ## Platforms Tested on
-- MacOS
-- Android
-- iOS
 - Linux
 - Windows
+
+  
 # Important Links
-Kanban Board: [link]\https://globetrotter1.atlassian.net/?continue=https%3A%2F%2Fglobetrotter1.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10000&atlOrigin=eyJpIjoiZGQ2MjZiYzFkMzgxNDcwMmI4YzRiODg0MTM3NjBlNzQiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
+Kanban Board: https://globetrotter1.atlassian.net/?continue=https%3A%2F%2Fglobetrotter1.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10000&atlOrigin=eyJpIjoiZGQ2MjZiYzFkMzgxNDcwMmI4YzRiODg0MTM3NjBlNzQiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
+
 Designs: [link]\
-Styles Guide(s): [link]
+
+Styles Guides:Airbnb JavaScript Style Guide (https://github.com/airbnb/javascript), 
+Airbnb React/JSX Style Guide (https://github.com/airbnb/javascript/tree/master/react), 
+Google TypeScript Style Guide (https://google.github.io/styleguide/tsguide.html) 
 
 # How to Run Dev and Test Environment
 
 ## Dependencies
-- List all dependencies here
-- Don't forget to include versions
+- Node.js v24 and npm
+- Client: React, TypeScript, Vite
+- Server: Express, Mongoose, cors, dotenv, TypeScript 5.9, ts-node-dev
+- A MongoDB Atlas account
+  
 ### Downloading Dependencies
-Describe where to download the dependencies here. Some will likely require a web download. Provide links here. For IDE extensions, make sure your project works with the free version of them, and detail which IDE(s) these are available in. 
+- Node.js (includes npm): https://nodejs.org
+- Git: https://git-scm.com
+- MongoDB Atlas: https://www.mongodb.com/atlas
+- Recommended editor: VS Code (https://code.visualstudio.com)
 
 ## Commands
-Describe how the commands and process to launch the project on the main branch in such a way that anyone working on the project knows how to check the affects of any code they add.
+Clone and set up:
 
-```sh
-Example terminal command syntax
+```bash
+git clone https://github.com/CSC-3380-Fall-2026/Team-7.git
+cd Team-7
 ```
 
-It is very common in these sections to see code in peculiar boxes to help them stand out. Check the markdown section of the Project Specifications to see how to add more / customize these.
+Run the server (terminal 1):
 
-```python
-def code_highlight_example(m: int, m: float, s: str) -> str:
-	return s + str(n*m)
+```bash
+cd server
+npm install
+cp .env.example .env   # then fill in your values
+npm run dev
 ```
 
-```java
-public static void main(String[] args){
-	System.out.println("Hello, World!");
-}
+Check it works at http://localhost:5000/api/health (should show `{"status":"ok"}`).
+
+Run the client (terminal 2):
+
+```bash
+cd client
+npm install
+npm run dev
 ```
 
-```c#
-static void Main(){
-	Console.WriteLine("Hello, World!");
-}
-```
+Open the local URL 
