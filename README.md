@@ -28,9 +28,9 @@ Google TypeScript Style Guide (https://google.github.io/styleguide/tsguide.html)
 # How to Run Dev and Test Environment
 
 ## Dependencies
-- Node.js v24 and npm
-- Client: React, TypeScript, Vite
-- Server: Express, Mongoose, cors, dotenv, TypeScript 5.9, ts-node-dev
+- Node.js v24 and npm 11.19.0
+- Client: React 19.3.0, TypeScript 6.0.3, Vite 8.3.2
+- Server: Express 5.2.1, Mongoose 9.10.4, cors 2.8.6, dotenv 18.0.5, TypeScript 5.9, ts-node-dev
 - A MongoDB Atlas account
   
 ### Downloading Dependencies
