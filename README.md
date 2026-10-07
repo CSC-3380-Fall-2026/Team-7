@@ -30,7 +30,7 @@ Google TypeScript Style Guide (https://google.github.io/styleguide/tsguide.html)
 ## Dependencies
 - Node.js v24 and npm 11.19.0
 - Client: React 19.3.0, TypeScript 6.0.3, Vite 8.3.2
-- Server: Express 5.2.1, Mongoose 9.10.4, cors 2.8.6, dotenv 18.0.5, TypeScript 5.9, ts-node-dev
+- Server: Express 5.2.1, Mongoose 9.10.4, cors 2.8.6, dotenv 18.0.5, TypeScript 5.9, tsx 4.23.15
 - A MongoDB Atlas account
   
 ### Downloading Dependencies
@@ -52,7 +52,7 @@ Run the server (terminal 1):
 ```bash
 cd server
 npm install
-cp .env.example .env   # then fill in your values
+cp('copy' on windows) .env.example .env   # then fill in your values
 npm run dev
 ```
 
@@ -66,4 +66,4 @@ npm install
 npm run dev
 ```
 
-Open the local URL 
+Open the local URL http://localhost:5173
