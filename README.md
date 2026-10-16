@@ -5,7 +5,7 @@ Project Manager: Diamond Lewis ([dlew137])\
 Communications Lead: Reagan Mangram ([GitHub Name])\
 Git Master: Jermiah Holmes (Jerry0555)\
 Design Lead: Chastity Hampton ([GitHub Name])\
-Quality Assurance Tester: Daylen Doucet ([GitHub Name])
+Quality Assurance Tester: Daylen Doucet (d-douc)
 
 # About Our Software
 
