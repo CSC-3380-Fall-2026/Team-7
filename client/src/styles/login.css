@@ -1,0 +1,155 @@
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #edf2e7;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 42px;
+  border: 1px solid #e3e8dd;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(24, 59, 43, 0.08);
+}
+
+.login-logo {
+  color: #183b2b;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.login-logo span {
+  color: #82a947;
+}
+
+.login-heading {
+  margin: 35px 0 28px;
+}
+
+.login-eyebrow {
+  color: #64853c;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.login-heading h1 {
+  margin: 12px 0;
+  color: #183b2b;
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+
+.login-heading > p:last-child {
+  color: #657268;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form > label {
+  margin-top: 8px;
+  color: #183b2b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-form > input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d8dfd3;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+}
+
+.login-form > input:focus {
+  border-color: #82a947;
+  outline: 2px solid #82a947;
+  outline-offset: 1px;
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 14px;
+  font-size: 12px;
+}
+
+.remember-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #657268;
+}
+
+.remember-option input {
+  accent-color: #64853c;
+}
+
+.login-options a,
+.signup-text a {
+  color: #64853c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-button {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #183b2b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #28553d;
+}
+
+.signup-text {
+  margin-top: 25px;
+  color: #657268;
+  font-size: 13px;
+  text-align: center;
+}
+
+.login-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e3e8dd;
+  color: #879187;
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 28px 22px;
+  }
+
+  .login-heading h1 {
+    font-size: 27px;
+  }
+
+  .login-options {
+    flex-wrap: wrap;
+  }
+}
