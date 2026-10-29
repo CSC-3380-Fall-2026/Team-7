@@ -48,4 +48,4 @@ const destinationSchema = new Schema<Destination>({
   transportation: { type: [String], default: [] },
 });
 
-export const DestinationModel = model<Destination>("Destination", destinationSchema);import mongoose from "mongoose";
+export const DestinationModel = model<Destination>("Destination", destinationSchema);

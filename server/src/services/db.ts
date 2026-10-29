@@ -9,6 +9,11 @@ import mongoose from "mongoose";
 export async function connectDb() {
 const mongoUri = process.env.MONGO_URI;
 
+ if (!mongoUri) {
+    console.error("MONGO_URI is not set. Copy .env.example to .env and fill it in.");
+    process.exit(1);
+  }
+  
   try {
     await mongoose.connect(mongoUri);
     console.log(`MongoDB connected: ${mongoose.connection.name}`);
