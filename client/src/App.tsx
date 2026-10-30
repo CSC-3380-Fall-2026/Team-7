@@ -1,9 +1,11 @@
+import Home from "./pages/Home";
+
 /**
  * Root component of the Globetrotter app.
- * @returns The temporary home screen.
+ * @returns The homepage.
  */
 function App() {
-  return <h1>Globetrotter</h1>;
+  return <Home />;
 }
 
 export default App;
