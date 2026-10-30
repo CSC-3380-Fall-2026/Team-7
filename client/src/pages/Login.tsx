@@ -1,65 +1,77 @@
 
-import "../styles/login.css";
+import { useState, type FormEvent } from "react";
+import "./login.css";
 
-function Login() {
+function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  function handleLoginSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
   return (
-    <main className="login-page">
-      <section className="login-card">
-        <a className="login-logo" href="/">
+    <div className="login-page">
+      <div className="login-card">
+        <div className="login-logo">
           globetrotter<span>.</span>
-        </a>
+        </div>
 
         <div className="login-heading">
-          <p className="login-eyebrow">WELCOME BACK</p>
-          <h1>Let's get you going.</h1>
+          <p className="login-eyebrow">Welcome Back!</p>
+          <h1>Lets get signed in!</h1>
           <p>Sign in to continue planning your next adventure.</p>
         </div>
 
-        <form className="login-form">
-          <label htmlFor="email">Email address</label>
+        <form className="login-form" onSubmit={handleLoginSubmit}>
+          <label htmlFor="email">Email:</label>
           <input
-            id="email"
-            name="email"
+            className="login-input"
             type="email"
-            placeholder="you@example.com"
+            id="email"
+            placeholder="Enter your email"
             autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
-
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password:</label>
           <input
-            id="password"
-            name="password"
             type="password"
+            id="password"
             placeholder="Enter your password"
             autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
             required
           />
 
           <div className="login-options">
-            <label className="remember-option">
-              <input type="checkbox" name="remember" />
+            <label className="remember">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(event) => setRememberMe(event.target.checked)}
+              />
               Remember me
             </label>
 
-            <a href="#forgot-password">Forgot password?</a>
+            <span className="login-link">Forgot password?</span>
           </div>
 
-          <button type="submit" className="login-button">
-            Sign In
+          <button className="login-button" type="submit">
+            Log In
           </button>
         </form>
 
-        <p className="signup-text">
-          New to Globetrotter? <a href="#sign-up">Create an account</a>
+        <p className="signup">
+          New to Globetrotter?{" "}
+          <span className="login-link">Create an account</span>
         </p>
-
-        <p className="login-footer">
-          Your next adventure is just around the corner.
-        </p>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
 
-export default Login;
+export default LoginPage;
