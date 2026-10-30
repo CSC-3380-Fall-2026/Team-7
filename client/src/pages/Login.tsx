@@ -1,11 +1,22 @@
 
 import "../styles/login.css";
 
-function Login() {
+type LoginProps = {
+  onHome: () => void;
+};
+
+function Login({ onHome }: LoginProps) {
   return (
     <main className="login-page">
       <section className="login-card">
-        <a className="login-logo" href="/">
+        <a
+          className="login-logo"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            onHome();
+          }}
+        >
           globetrotter<span>.</span>
         </a>
 

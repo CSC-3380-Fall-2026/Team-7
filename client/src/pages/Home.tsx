@@ -1,6 +1,12 @@
+
 import "../styles/home.css";
 
-function Home() {
+type HomeProps = {
+  onSignIn: () => void;
+  onPlanner: () => void;
+};
+
+function Home({ onSignIn, onPlanner }: HomeProps) {
   return (
     <main className="home-page">
       <nav className="home-nav">
@@ -10,11 +16,36 @@ function Home() {
 
         <div className="nav-links">
           <a href="/">Explore</a>
-          <a href="/login">Sign In</a>
-          <a href="/planner">My Itinerary</a>
+
+          <button
+            type="button"
+            onClick={() => {
+
+              onSignIn();
+            }}
+          >
+            Sign In
+          </button>
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onPlanner();
+            }}
+          >
+            My Itinerary
+          </a>
         </div>
 
-        <a href="/planner" className="home-button">
+        <a
+          href="#"
+          className="home-button"
+          onClick={(e) => {
+            e.preventDefault();
+            onPlanner();
+          }}
+        >
           Start Planning Now
         </a>
       </nav>
@@ -26,7 +57,14 @@ function Home() {
           <p className="banner-text">
             Love going on vacations, but don't know where to start? Globetrotter has your back!
           </p>
-          <a href="/planner" className="banner-button">
+          <a
+            href="#"
+            className="banner-button"
+            onClick={(e) => {
+              e.preventDefault();
+              onPlanner();
+            }}
+          >
             Start Planning Now
           </a>
         </div>
@@ -38,7 +76,15 @@ function Home() {
             <p className="destination-eyebrow">POPULAR DESTINATIONS</p>
             <h2>Explore high travel destinations</h2>
           </div>
-          <a href="/planner">View All Destinations</a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onPlanner();
+            }}
+          >
+            View All Destinations
+          </a>
         </div>
 
         <div className="destination-cards">
