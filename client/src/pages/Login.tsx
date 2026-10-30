@@ -2,18 +2,13 @@
 import { useState, type FormEvent } from "react";
 import "./login.css";
 
-type LoginPageProp = { onLogin: () => void };
-
-function LoginPage({ onLogin }: LoginPageProp) {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
   function handleLoginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Remember me:", rememberMe);
-    onLogin();
   }
 
   return (
