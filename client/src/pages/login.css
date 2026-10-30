@@ -1,0 +1,83 @@
+.login-page{
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo{
+    font-size: 32px;
+    font-weight: 800;
+    color: #183b56;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+.login-logo span{
+    color: #0284c7;
+}
+
+/* Headings */
+.login-head h1{
+    font-size: 32px;
+    color:black;
+    margin-bottom: 10px;
+}
+
+/* Subtitle text */
+.login-sub{
+    color:black;
+    margin-bottom: 30px;
+}
+
+/* Forms */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+/* Input styling for email and passwords */
+.login-form input{
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.login-form input:focus{
+    outline: 2px solid #0284c7;
+    outline-offset: 1px;
+}
+
+/* Buttons */
+.login-button{
+    margin-top: 12px;
+    padding: 14px;
+    background-color: #303030;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+.login-options .remember{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.login-link{
+    color: #01537c;
+    font-size: 13px;
+}
