@@ -10,6 +10,8 @@ export interface Activity {
 
 export const activitySchema = new Schema<Activity>({
   name: { type: String, required: true },
+  time: { type: String, default: "" },
+  location: { type: String, default: "" },
   category: { type: String, default: "Activities" },
   estimatedCost: { type: Number, default: null },
 });
