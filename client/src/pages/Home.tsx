@@ -1,4 +1,3 @@
-
 import "../styles/home.css";
 
 /**
@@ -19,9 +18,15 @@ function Home() {
           <a href="#budget">Budget</a>
         </nav>
 
-        <a className="nav-button" href="#discover">
-          Get Started
-        </a>
+        <div className="nav-actions">
+          <a className="login-link" href="/login">
+            Log In
+          </a>
+
+          <a className="nav-button" href="/register">
+            Get Started
+          </a>
+        </div>
       </header>
 
       <main>
@@ -39,7 +44,7 @@ function Home() {
             and find adventures that fit your budget.
           </p>
 
-          <a className="primary-button" href="#features">
+          <a className="primary-button" href="/register">
             Find Your Next Destination →
           </a>
 

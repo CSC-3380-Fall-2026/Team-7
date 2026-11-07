@@ -3,12 +3,17 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { connectDb } from "./services/db";
+import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/api/health", (_req, res) => {
   const isDbConnected = mongoose.connection.readyState === 1;
