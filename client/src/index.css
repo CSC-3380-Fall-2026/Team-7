@@ -1,4 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f8f3;
+  color: #183b2b;
+}
+
+a {
+  text-decoration: none;
 }
