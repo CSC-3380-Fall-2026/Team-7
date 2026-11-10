@@ -26,13 +26,6 @@ export interface Destination {
   transportation: string[];
 }
 
-export interface UserProfile {
-  _id: string;
-  name: string;
-  email: string;
-  favorites: number[];
-}
-
 export interface RegisterRequest {
   name: string;
   email: string;
@@ -42,15 +35,6 @@ export interface RegisterRequest {
 export interface LoginRequest {
   email: string;
   password: string;
-}
-
-export interface AuthResponse {
-  user: UserProfile;
-}
-
-export interface UserProfileResponse {
-  user: UserProfile;
-  favoriteDestinations: Destination[];
 }
 
 export interface AddFavoriteRequest {
