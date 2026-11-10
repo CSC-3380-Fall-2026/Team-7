@@ -1,130 +1,99 @@
-
 import "../styles/home.css";
 
-type HomeProps = {
-  onSignIn: () => void;
-  onPlanner: () => void;
-};
-
-function Home({ onSignIn, onPlanner }: HomeProps) {
+/**
+ * Main homepage for the Globetrotter application.
+ * @returns The Globetrotter homepage.
+ */
+function Home() {
   return (
-    <main className="home-page">
-      <nav className="home-nav">
-        <a className="home-logo" href="/">
+    <div className="home-page">
+      <header className="navbar">
+        <a className="logo" href="/">
           globetrotter<span>.</span>
         </a>
 
-        <div className="nav-links">
-          <a href="/">Explore</a>
+        <nav>
+          <a href="#discover">Discover</a>
+          <a href="#plan">Plan a Trip</a>
+          <a href="#budget">Budget</a>
+        </nav>
 
-          <button
-            type="button"
-            onClick={() => {
+        <div className="nav-actions">
+          <a className="login-link" href="/login">
+            Log In
+          </a>
 
-              onSignIn();
-            }}
-          >
-            Sign In
-          </button>
-
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onPlanner();
-            }}
-          >
-            My Itinerary
+          <a className="nav-button" href="/register">
+            Get Started
           </a>
         </div>
+      </header>
 
-        <a
-          href="#"
-          className="home-button"
-          onClick={(e) => {
-            e.preventDefault();
-            onPlanner();
-          }}
-        >
-          Start Planning Now
-        </a>
-      </nav>
+      <main>
+        <section className="hero" id="discover">
+          <p className="eyebrow">YOUR NEXT ADVENTURE AWAITS</p>
 
-      <section className="homepage-banner">
-        <div className="banner-content">
-          <p className="banner-poster">WELCOME TO GLOBETROTTER</p>
-          <h1>Make your next travel, stress free</h1>
-          <p className="banner-text">
-            Love going on vacations, but don't know where to start? Globetrotter has your back!
+          <h1>
+            Your next adventure
+            <br />
+            starts <span>here.</span>
+          </h1>
+
+          <p className="hero-description">
+            Discover places you'll love, plan your next trip,
+            and find adventures that fit your budget.
           </p>
-          <a
-            href="#"
-            className="banner-button"
-            onClick={(e) => {
-              e.preventDefault();
-              onPlanner();
-            }}
-          >
-            Start Planning Now
-          </a>
-        </div>
-      </section>
 
-      <section className="destination-area">
-        <div className="destination-content">
-          <div>
-            <p className="destination-eyebrow">POPULAR DESTINATIONS</p>
-            <h2>Explore high travel destinations</h2>
+          <a className="primary-button" href="/register">
+            Find Your Next Destination →
+          </a>
+
+          <p className="hero-note">
+            Explore new places. Make unforgettable memories.
+          </p>
+        </section>
+
+        <section className="features" id="features">
+          <div className="section-heading">
+            <p className="eyebrow">MADE FOR YOUR NEXT GETAWAY</p>
+            <h2>Travel planning, made simple.</h2>
           </div>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onPlanner();
-            }}
-          >
-            View All Destinations
-          </a>
-        </div>
 
-        <div className="destination-cards">
-          <article className="destination-card Italy">
-            <div>
-              <h3>Italy</h3>
-              <p>Known for the best ancient history and great art and food!</p>
-            </div>
-          </article>
+          <div className="feature-grid">
+            <article className="feature-card">
+              <div className="feature-icon">✦</div>
+              <h3>Discover</h3>
+              <p>
+                Explore destinations and find places that match
+                your travel interests.
+              </p>
+            </article>
 
-          <article className="destination-card Japan">
-            <div>
-              <h3>Japan</h3>
-              <p>Known for their high tech infrastructure and tradtions going down for generations!</p>
-            </div>
-          </article>
+            <article className="feature-card" id="plan">
+              <div className="feature-icon">↗</div>
+              <h3>Plan Your Trip</h3>
+              <p>
+                Organize destinations and activities for your
+                next adventure.
+              </p>
+            </article>
 
-          <article className="destination-card France">
-            <div>
-              <h3>Dubai</h3>
-              <p>Known for their luxury shopping and modern architecture!</p>
-            </div>
-          </article>
+            <article className="feature-card" id="budget">
+              <div className="feature-icon">$</div>
+              <h3>Travel Your Way</h3>
+              <p>
+                Keep your budget in mind while exploring
+                vacation possibilities.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
 
-          <article className="destination-card Spain">
-            <div>
-              <h3>Spain</h3>
-              <p>Known for their rich culture and beautiful architecture!</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="home-footer">
-        <a className="footer-logo" href="/">
-          Globetrotter<span>.</span>
-        </a>
-        <p>Make memories without the stress, try today</p>
-      </section>
-    </main>
+      <footer className="footer">
+        <p>globetrotter. · Your journey starts here.</p>
+      </footer>
+    </div>
   );
 }
 
