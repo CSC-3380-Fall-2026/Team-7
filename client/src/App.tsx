@@ -1,33 +1,23 @@
-
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
 
 function App() {
-  const [activePage, setActivePage] = useState("budget");
-
   return (
-    <>
-      <nav className="app-navigation">
-        <span className="app-logo">Globetrotter</span>
-
-        <button
-          className={activePage === "budget" ? "nav-link selected" : "nav-link"}
-          onClick={() => setActivePage("budget")}
-        >
-          Budget Planner
-        </button>
-
-        <button
-          className={activePage === "itinerary" ? "nav-link selected" : "nav-link"}
-          onClick={() => setActivePage("itinerary")}
-        >
-          Itinerary Planner
-        </button>
-      </nav>
-
-      {activePage === "budget" ? <BudgetPlanner /> : <ItineraryPlanner />}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/budget" element={<BudgetPlanner />} />
+        <Route path="/itinerary" element={<ItineraryPlanner />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
