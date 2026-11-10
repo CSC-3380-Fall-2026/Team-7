@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
+import Planner from "./pages/Planner";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/budget" element={<BudgetPlanner />} />
         <Route path="/itinerary" element={<ItineraryPlanner />} />
+        <Route path="/planner" element={<Planner />} />
       </Routes>
     </BrowserRouter>
   );
