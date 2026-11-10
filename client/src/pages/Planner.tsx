@@ -1,39 +1,22 @@
+import { Link } from "react-router-dom";
 import "../styles/Planner.css";
 
-type PlannerProps = {
-    onHome: () => void;
-    onLogin: () => void;
-};
-function Planner({ onHome, onLogin }: PlannerProps) {
+/**
+ * Trip planner page where users choose a destination, dates, and number of travelers.
+ * @returns The trip planner page.
+ */
+function Planner() {
     return (
         <main className="planner-page">
             <nav className="planner-nav">
-                <a className="planner-logo" href="#" onClick={(e) => {
-                    e.preventDefault();
-                    onHome();
-                }}>
+                <Link className="planner-logo" to="/">
                     globetrotter<span>.</span>
-                </a>
+                </Link>
 
                 <div className="planner-nav-links">
-                    <a href="/" onClick={(e) => {
-                        e.preventDefault();
-                        onHome();
-                    }}>
-                        Explore
-                    </a>
-                    <a href="/login" onClick={(e) => {
-                        e.preventDefault();
-                        onLogin();
-                    }}>
-                        Sign In
-                    </a>
-                    <a href="#" onClick={(e) => {
-                        e.preventDefault();
-                        onHome();
-                    }}>
-                        My Itinerary
-                    </a>
+                    <Link to="/">Explore</Link>
+                    <Link to="/login">Sign In</Link>
+                    <Link to="/itinerary">My Itinerary</Link>
                 </div>
             </nav>
 
@@ -89,4 +72,3 @@ function Planner({ onHome, onLogin }: PlannerProps) {
 }
 
 export default Planner;
-
