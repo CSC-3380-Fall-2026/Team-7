@@ -38,12 +38,12 @@ function ItineraryPlanner() {
     <main className="planner-page">
       <header className="planner-header">
         <div>
-          <p className="eyebrow">YOUR TRIP</p>
+          <p className="planner-eyebrow">YOUR TRIP</p>
           <h1>Itinerary Planner</h1>
           <p className="muted">Miami, Florida · June 12–17</p>
         </div>
 
-        <button className="primary-button">+ Add Activity</button>
+        <button className="planner-button">+ Add Activity</button>
       </header>
 
       <section className="planner-panel">
