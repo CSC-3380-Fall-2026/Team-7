@@ -7,7 +7,7 @@ describe('Globetrotter Smoke Test', () => {
     render(<App />);
 
     expect(
-      screen.getByRole('heading', { name: 'Globetrotter' })
+      screen.getByRole('heading', { name: /your next adventure/i })
     ).toBeInTheDocument();
   });
 });
