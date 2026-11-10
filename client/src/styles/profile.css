@@ -1,0 +1,120 @@
+
+.profile-page {
+  min-height: 100vh;
+  background: #edf2e7;
+}
+
+.profile-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 8%;
+  background: #ffffff;
+}
+
+.logout-button,
+.save-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #183b2b;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-button:hover,
+.save-button:hover {
+  background: #315b43;
+}
+
+.profile-card {
+  width: min(90%, 600px);
+  margin: 55px auto;
+  padding: 40px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(24, 59, 43, 0.08);
+}
+
+.profile-eyebrow {
+  color: #64853c;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.profile-card h1 {
+  margin: 12px 0;
+  color: #183b2b;
+  font-size: 32px;
+}
+
+.profile-description {
+  color: #657268;
+  line-height: 1.6;
+}
+
+.profile-details {
+  margin-top: 35px;
+}
+
+.profile-details h2 {
+  margin-bottom: 20px;
+  color: #183b2b;
+  font-size: 20px;
+}
+
+.profile-details form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-details label {
+  color: #526358;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-details input {
+  padding: 13px;
+  border: 1px solid #dce4d8;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.profile-details input:disabled {
+  background: #f4f6f2;
+  color: #657268;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.save-button {
+  margin-top: 10px;
+}
+
+.profile-actions .save-button {
+  margin-top: 0;
+}
+
+.cancel-button {
+  padding: 12px 20px;
+  border: 1px solid #dce4d8;
+  border-radius: 8px;
+  background: white;
+  color: #183b2b;
+  cursor: pointer;
+}
+
+.profile-footer {
+  margin-top: 35px;
+  color: #718075;
+  font-size: 12px;
+  text-align: center;
+}
