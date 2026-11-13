@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/profile.css";
 
 interface User {
@@ -111,15 +111,6 @@ function Profile() {
 
   return (
     <main className="profile-page">
-      <header className="profile-navbar">
-        <Link className="login-logo" to="/">
-          globetrotter<span>.</span>
-        </Link>
-
-        <button className="logout-button" onClick={handleLogout}>
-          Log Out
-        </button>
-      </header>
 
       <section className="profile-card">
         <p className="profile-eyebrow">YOUR ACCOUNT</p>
