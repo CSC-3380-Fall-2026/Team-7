@@ -6,8 +6,6 @@ import Profile from "./pages/Profile";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
 import Planner from "./pages/Planner";
-import Squad from "./pages/Squad";
-
 
 function App() {
   return (
@@ -20,7 +18,6 @@ function App() {
         <Route path="/budget" element={<BudgetPlanner />} />
         <Route path="/itinerary" element={<ItineraryPlanner />} />
         <Route path="/planner" element={<Planner />} />
-        <Route path="/squad" element={<Squad />} />
       </Routes>
     </BrowserRouter>
   );
