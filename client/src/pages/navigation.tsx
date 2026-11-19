@@ -18,7 +18,7 @@ function Navigation(){
         </Link>
 
         <nav className="profile-nav-links">
-          {/*When adding new pages if needed, add them here so we can navigate to them from one page*/}
+          {/*When adding new pages if needed, add them here so we can navigate to them from another page*/}
           <NavLink to="/" end>Home</NavLink>
           <NavLink to="/itinerary">Itinerary</NavLink>
           <NavLink to="/budget">Budget</NavLink>
