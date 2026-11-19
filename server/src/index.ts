@@ -6,6 +6,8 @@ import { connectDb } from "./services/db";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import itineraryRoutes from "./routes/itineraryRoutes";
+import destinationRoutes from "./routes/destinationRoutes";
+
 
 dotenv.config();
 
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/itineraries", itineraryRoutes);
+app.use("/api/destinations", destinationRoutes);
+
 
 app.get("/api/health", (_req, res) => {
   const isDbConnected = mongoose.connection.readyState === 1;
