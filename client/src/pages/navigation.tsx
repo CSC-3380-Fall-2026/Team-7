@@ -23,6 +23,8 @@ function Navigation(){
           <NavLink to="/itinerary">Itinerary</NavLink>
           <NavLink to="/budget">Budget</NavLink>
           <NavLink to="/profile">Profile</NavLink>
+          <NavLink to="/planner">Planner</NavLink>
+          <NavLink to="/squad">Squad</NavLink>
         </nav>
 
         <button className="logout-button" onClick={logout}>

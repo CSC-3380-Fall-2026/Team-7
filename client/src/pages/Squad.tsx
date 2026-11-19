@@ -3,18 +3,6 @@ import "../styles/Squad.css";
 function Squad() {
   return (
     <div className="squad-page">
-      <header className="squad-navbar">
-        <a href="/" className="squad-logo">
-          globetrotter<span>.</span>
-        </a>
-
-        <nav>
-          <a href="/">Home</a>
-          <a href="/planner">Planner</a>
-          <a href="/profile">Profile</a>
-        </nav>
-      </header>
-
       <main className="squad-content">
         <p className="squad-eyebrow">TRAVEL TOGETHER</p>
 
