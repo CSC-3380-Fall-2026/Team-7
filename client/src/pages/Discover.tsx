@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { destinations } from "../data/destinationProfiles";
+import { destinations } from "../../DATA/destinationProfiles";
 import "../styles/discover.css";
 
 function Discover(){
