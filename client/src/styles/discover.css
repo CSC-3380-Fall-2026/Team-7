@@ -1,0 +1,126 @@
+
+.discover-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discover-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.discover-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.discover-eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.discover-card {
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.discover-card-content {
+  padding: 30px;
+}
+
+.discover-counter {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.discover-card h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.discover-description {
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.discover-duration {
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  color: #333;
+}
+
+.discover-actions {
+  display: flex;
+  gap: 15px;
+  padding: 20px 30px 30px;
+}
+
+.discover-actions button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.discover-actions button:hover {
+  transform: translateY(-3px);
+}
+
+.discover-pass {
+  background: #ffe5e5;
+  color: #c0392b;
+}
+
+.discover-like {
+  background: #dff7e7;
+  color: #218c50;
+}
+
+.discover-progress {
+  margin-top: 20px;
+  color: #777;
+}
+
+.discover-finished {
+  max-width: 520px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.discover-restart {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .discover-card-content {
+    padding: 20px;
+  }
+
+  .discover-actions {
+    padding: 15px 20px 20px;
+  }
+}
