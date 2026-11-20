@@ -92,9 +92,9 @@ function Discover(){
             <section className="discover-card">
                 <div className="discover-card-content">
                     <h2>{currentDestination.city}, {currentDestination.state}</h2>
-                    <p className="discover-description">{currentDestination.duration}</p>
+                    <p className="discover-description">{currentDestination.description}</p>
                     <div className="discover-duration">
-                        <strong>Recommended Trip Duration:</strong>{" "} {currentDestination.description}
+                        <strong>Recommended Trip Duration:</strong>{" "} {currentDestination.duration}
                     </div>
                 </div>
                 <div className="discover-actions">
