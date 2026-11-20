@@ -1,8 +1,35 @@
-import { useState } from "react";
-import { destinations } from "../../../DATA/destinationprofiles";
+import { useEffect, useState } from "react";
 import "../styles/discover.css";
 
+interface Destination {
+  id: number;
+  city: string;
+  state: string;
+  description: string;
+  duration: string;
+}
+
 function Discover(){
+
+    const [destinations, setDestinations] = useState<Destination[]>([]); // Destinations loaded from the server
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    // Load all destinations from the server when the page opens
+    useEffect(() => {
+        async function loadDestinations() {
+            try {
+                const response = await fetch("http://localhost:5000/api/destinations");
+                if (!response.ok) throw new Error();
+                setDestinations(await response.json());
+            } catch {
+                setError("Couldn't load destinations. Make sure the server is running.");
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadDestinations();
+    }, []);
 
     const [current, setCurrent] = useState<number>(0); // Tracking the current destination being displayed
     const [likedDestinations, setLiked] = useState<number[]>([]); // Store liked destinations in list
@@ -31,6 +58,14 @@ function Discover(){
         setSkipped([]);
     }
 
+    // While destinations are loading
+    if (loading) {
+        return <main className="discover-page"><p>Loading destinations...</p></main>;
+    }
+    if (error) {
+        return <main className="discover-page"><p>{error}</p></main>;
+    }
+
     // If all destinations are viewed
     if(!currentDestination){
         return(
@@ -56,16 +91,15 @@ function Discover(){
 
             <section className="discover-card">
                 <div className="discover-card-content">
-                    <p className="discover-content"></p>
-                    <h2>{currentDestination.city}, {""} {currentDestination.state}</h2>
+                    <h2>{currentDestination.city}, {currentDestination.state}</h2>
                     <p className="discover-description">{currentDestination.duration}</p>
                     <div className="discover-duration">
-                        <strong>Recommended Trip Duration:</strong>{" "} {currentDestination.duration}
+                        <strong>Recommended Trip Duration:</strong>{" "} {currentDestination.description}
                     </div>
                 </div>
                 <div className="discover-actions">
                     <button type="button" className="discover-pass" onClick={Skip}>X Pass</button>
-                    <button type="button" className="discover-like" onClick={Like}>(heart) Like</button>
+                    <button type="button" className="discover-like" onClick={Like}> ♥ Like</button>
                 </div>
             </section>
             <p className="discover-progress">{likedDestinations.length} liked .{" "} {skipDestinations.length} passed</p>

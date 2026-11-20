@@ -95,11 +95,6 @@ function Profile() {
     }
   }
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    navigate("/");
-  }
 
   if (loading) {
     return <main className="profile-page">Loading your profile...</main>;
