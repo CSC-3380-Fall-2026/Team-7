@@ -102,6 +102,11 @@ function Discover(){
             </header>
 
             <section className="discover-card">
+                <img
+                className="discover-image"
+                src={ `/destinations/${encodeURIComponent(currentDestination.city)}.png` }
+                alt={`${currentDestination.city}, ${currentDestination.state}`}
+                />
                 <div className="discover-card-content">
                     <h2>{currentDestination.city}, {currentDestination.state}</h2>
                     <p className="discover-description">{currentDestination.description}</p>
