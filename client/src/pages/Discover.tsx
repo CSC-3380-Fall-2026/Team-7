@@ -41,6 +41,18 @@ function Discover(){
     if (!currentDestination) return;
     
     setLiked((previous) => [...previous, currentDestination.id]);
+
+    // Save the like to the user's account
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    fetch("http://localhost:5000/api/users/favorites", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ destinationId: currentDestination.id }),
+    }).catch((saveError) => console.error("Could not save like:", saveError));
+
     // Go to next location
     setCurrent((previous) => previous + 1);
     }

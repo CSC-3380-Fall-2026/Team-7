@@ -9,6 +9,12 @@ interface User {
   email: string;
 }
 
+interface FavoriteDestination {
+  id: number;
+  city: string;
+  state: string;
+}
+
 function Profile() {
   const navigate = useNavigate();
 
@@ -18,6 +24,7 @@ function Profile() {
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState<FavoriteDestination[]>([]);
 
   const token =
     localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -48,6 +55,20 @@ function Profile() {
         setUser(data.user);
         setName(data.user.name);
         setEmail(data.user.email);
+
+        const favoritesResponse = await fetch(
+          "http://localhost:5000/api/users/favorites",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (favoritesResponse.ok) {
+          const favoritesData = await favoritesResponse.json();
+          setFavorites(favoritesData.destinations);
+        }
       } catch {
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");
@@ -167,6 +188,21 @@ function Profile() {
           </form>
 
           {message && <p role="status">{message}</p>}
+        </div>
+
+        <div className="profile-details">
+          <h2>Your Matches</h2>
+          {favorites.length === 0 ? (
+            <p>You haven't liked any destinations yet. Click Discover and get matching!</p>
+          ) : (
+            <ul>
+              {favorites.map((destination) => (
+                <li key={destination.id}>
+                  {destination.city}, {destination.state}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <p className="profile-footer">

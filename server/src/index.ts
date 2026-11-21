@@ -7,6 +7,7 @@ import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import itineraryRoutes from "./routes/itineraryRoutes";
 import destinationRoutes from "./routes/destinationRoutes";
+import favoriteRoutes from "./routes/favoriteRoutes";
 
 
 dotenv.config();
@@ -14,8 +15,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
 app.use("/api/auth", authRoutes);
+app.use("/api/users/favorites", favoriteRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/itineraries", itineraryRoutes);
 app.use("/api/destinations", destinationRoutes);

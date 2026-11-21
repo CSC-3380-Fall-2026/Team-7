@@ -6,6 +6,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  favorites: number[];
 }
 
 // Defines the structure of a user in MongoDB
@@ -26,6 +27,10 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
+    },
+    favorites: {
+      type: [Number],
+      default: [],
     },
   },
   { timestamps: true }
