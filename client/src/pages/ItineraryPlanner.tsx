@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type DragEvent } from "react";
+import { useEffect, useState, type FormEvent, type DragEvent } from "react";
 import "./planner.css";
 
 type Activity = {
@@ -6,43 +6,73 @@ type Activity = {
   time: string;
   activity: string;
   location: string;
-  cost: number;
+  cost: number | null;
 };
 
-const initialItinerary: Record<number, Activity[]> = {
-  1: [
-    { id: 1, time: "9:00 AM", activity: "Arrive in Miami", location: "Miami International Airport", cost: 0 },
-    { id: 2, time: "11:00 AM", activity: "Hotel Check-In", location: "Ocean Drive Hotel", cost: 450 },
-    { id: 3, time: "1:00 PM", activity: "Lunch", location: "Crazy About You", cost: 25 },
-    { id: 4, time: "3:00 PM", activity: "Beach Walk", location: "South Beach", cost: 0 },
-    { id: 5, time: "7:00 PM", activity: "Dinner", location: "Cactus Club Restaurant", cost: 60 },
-  ],
-  2: [
-    { id: 6, time: "9:00 AM", activity: "Breakfast", location: "Local Cafe", cost: 20 },
-    { id: 7, time: "11:00 AM", activity: "Visit Art Deco District", location: "South Beach", cost: 0 },
-    { id: 8, time: "2:00 PM", activity: "Lunch", location: "Ocean Drive", cost: 35 },
-  ],
-  3: [
-    { id: 9, time: "10:00 AM", activity: "Visit Little Havana", location: "Calle Ocho", cost: 15 },
-    { id: 10, time: "1:00 PM", activity: "Shopping", location: "Bayside Marketplace", cost: 50 },
-    { id: 11, time: "6:00 PM", activity: "Dinner", location: "Miami Beach", cost: 65 },
-  ],
-  4: [
-    { id: 12, time: "9:00 AM", activity: "Breakfast", location: "Miami Beach", cost: 20 },
-    { id: 13, time: "11:00 AM", activity: "Visit Wynwood Walls", location: "Wynwood", cost: 15 },
-    { id: 14, time: "2:00 PM", activity: "Lunch", location: "Wynwood", cost: 30 },
-  ],
-  5: [
-    { id: 15, time: "10:00 AM", activity: "Boat Tour", location: "Biscayne Bay", cost: 75 },
-    { id: 16, time: "1:00 PM", activity: "Lunch", location: "Bayside Marketplace", cost: 35 },
-    { id: 17, time: "6:00 PM", activity: "Dinner", location: "Miami Beach", cost: 60 },
-  ],
-  6: [
-    { id: 18, time: "9:00 AM", activity: "Breakfast", location: "Local Cafe", cost: 20 },
-    { id: 19, time: "11:00 AM", activity: "Shopping", location: "Lincoln Road", cost: 40 },
-    { id: 20, time: "5:00 PM", activity: "Final Beach Visit", location: "South Beach", cost: 0 },
-  ],
+type DestinationActivity = {
+  name: string;
+  location: string;
+  estimatedCostMin: number | null;
+  estimatedCostMax: number | null;
 };
+
+type DestinationRestaurant = {
+  name: string;
+  address: string;
+  estimatedCostMin: number | null;
+  estimatedCostMax: number | null;
+};
+
+type Destination = {
+  id: number;
+  city: string;
+  state: string;
+  activities?: DestinationActivity[];
+  breakfast?: DestinationRestaurant[];
+  lunch?: DestinationRestaurant[];
+  dinner?: DestinationRestaurant[];
+};
+
+function estimateCost(item: {
+  estimatedCostMin: number | null;
+  estimatedCostMax: number | null;
+}): number | null {
+  const { estimatedCostMin: min, estimatedCostMax: max } = item;
+  if (min !== null && max !== null) return (min + max) / 2;
+  return min ?? max ?? null;
+}
+
+function buildItinerary(destination: Destination): Record<number, Activity[]> {
+  const itinerary: Record<number, Activity[]> = {};
+  const activities = destination.activities ?? [];
+  const slots = ["09:00", "11:00", "13:00", "15:00", "18:00"];
+  let nextId = 1;
+
+  for (let day = 1; day <= 7; day++) {
+    const activityOffset = (day - 1) * 2;
+    const suggestions: Array<{ name: string; location: string; estimatedCostMin: number | null; estimatedCostMax: number | null }> = [];
+    const breakfast = destination.breakfast?.[(day - 1) % (destination.breakfast?.length || 1)];
+    const lunch = destination.lunch?.[(day - 1) % (destination.lunch?.length || 1)];
+    const dinner = destination.dinner?.[(day - 1) % (destination.dinner?.length || 1)];
+    const firstActivity = activities[activityOffset % (activities.length || 1)];
+    const secondActivity = activities[(activityOffset + 1) % (activities.length || 1)];
+
+    if (breakfast) suggestions.push({ ...breakfast, location: breakfast.address });
+    if (firstActivity) suggestions.push(firstActivity);
+    if (lunch) suggestions.push({ ...lunch, location: lunch.address });
+    if (secondActivity) suggestions.push(secondActivity);
+    if (dinner) suggestions.push({ ...dinner, location: dinner.address });
+
+    itinerary[day] = suggestions.map((item, index) => ({
+      id: nextId++,
+      time: slots[index] ?? "19:00",
+      activity: item.name,
+      location: item.location,
+      cost: estimateCost(item),
+    }));
+  }
+  return itinerary;
+}
 
 const emptyForm = {
   time: "",
@@ -79,10 +109,50 @@ function formatTime(time: string) {
 
 function ItineraryPlanner() {
   const [tripDuration, setTripDuration] = useState(3);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [destinationId, setDestinationId] = useState<number | null>(null);
+  const [loadingDestinations, setLoadingDestinations] = useState(true);
+  const [destinationError, setDestinationError] = useState("");
+  const selectedDestination = destinations.find((item) => item.id === destinationId);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadDestinations() {
+      try {
+        const response = await fetch("/api/destinations");
+        if (!response.ok) throw new Error(`Request failed (${response.status})`);
+        const data: Destination[] = await response.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error("No destinations found");
+        if (cancelled) return;
+        setDestinations(data);
+        const params = new URLSearchParams(window.location.search);
+        const requestedId = Number(params.get("destinationId") ?? params.get("destination") ?? localStorage.getItem("globetrotterDestinationId"));
+        const initial = data.find((item) => item.id === requestedId) ?? data[0];
+        setDestinationId(initial.id);
+        setActivities(buildItinerary(initial));
+      } catch (error) {
+        if (!cancelled) setDestinationError(error instanceof Error ? error.message : "Could not load destinations");
+      } finally {
+        if (!cancelled) setLoadingDestinations(false);
+      }
+    }
+    void loadDestinations();
+    return () => { cancelled = true; };
+  }, []);
+
+  function changeDestination(id: number) {
+    const destination = destinations.find((item) => item.id === id);
+    if (!destination) return;
+    setDestinationId(id);
+    localStorage.setItem("globetrotterDestinationId", String(id));
+    setActivities(buildItinerary(destination));
+    setSelectedDay(1);
+    resetForm();
+  }
   const [selectedDay, setSelectedDay] = useState(1);
 
   const [activities, setActivities] =
-    useState<Record<number, Activity[]>>(initialItinerary);
+    useState<Record<number, Activity[]>>({});
 
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -99,10 +169,10 @@ function ItineraryPlanner() {
   const tripTotal = Object.entries(activities)
     .filter(([day]) => Number(day) <= tripDuration)
     .flatMap(([, items]) => items)
-    .reduce((total, item) => total + item.cost, 0);
+    .reduce((total, item) => total + (item.cost ?? 0), 0);
 
   const dailyTotal = currentActivities.reduce(
-    (total, item) => total + item.cost,
+    (total, item) => total + (item.cost ?? 0),
     0
   );
 
@@ -124,7 +194,7 @@ function ItineraryPlanner() {
       time: toTimeInputValue(item.time),
       activity: item.activity,
       location: item.location,
-      cost: String(item.cost),
+      cost: item.cost === null ? "" : String(item.cost),
     });
 
     setEditingActivityId(item.id);
@@ -143,7 +213,7 @@ function ItineraryPlanner() {
       time: newActivity.time,
       activity: newActivity.activity.trim(),
       location: newActivity.location.trim(),
-      cost: Number(newActivity.cost),
+      cost: newActivity.cost.trim() === "" ? null : Number(newActivity.cost),
     };
 
     if (editingActivityId !== null) {
@@ -195,8 +265,8 @@ function ItineraryPlanner() {
   }
 
   function handleDrop(
-    event: DragEvent<HTMLElement>,
-    targetId: number
+  event: DragEvent<HTMLElement>,
+  targetId: number
   ) {
     event.preventDefault();
 
@@ -223,9 +293,23 @@ function ItineraryPlanner() {
         return previous;
       }
 
-      const [movedActivity] = dayActivities.splice(fromIndex, 1);
+      // Save the original time slots
+      const fromTime = dayActivities[fromIndex].time;
+      const toTime = dayActivities[toIndex].time;
 
-      dayActivities.splice(toIndex, 0, movedActivity);
+      // Swap the two activities
+      const fromActivity = dayActivities[fromIndex];
+      const toActivity = dayActivities[toIndex];
+
+      dayActivities[fromIndex] = {
+        ...toActivity,
+        time: fromTime,
+      };
+
+      dayActivities[toIndex] = {
+        ...fromActivity,
+        time: toTime,
+      };
 
       return {
         ...previous,
@@ -250,13 +334,32 @@ function ItineraryPlanner() {
           </div>
         </header>
 
+        <div className="duration-selector">
+          <label htmlFor="destination-select">Choose Destination: </label>
+          <select
+            id="destination-select"
+            value={destinationId ?? ""}
+            disabled={loadingDestinations || destinations.length === 0}
+            onChange={(event) => changeDestination(Number(event.target.value))}
+          >
+            {destinations.length === 0 && <option value="">No destinations available</option>}
+            {destinations.map((destination) => (
+              <option key={destination.id} value={destination.id}>
+                {destination.city}, {destination.state}
+              </option>
+            ))}
+          </select>
+          {loadingDestinations && <p>Loading destinations...</p>}
+          {destinationError && <p role="alert">Unable to load destinations: {destinationError}</p>}
+        </div>
+
         <section className="trip-overview">
 
           <article className="overview-card">
             <div className="overview-icon">⌖</div>
             <div>
               <p>Destination</p>
-              <h3>Miami, Florida</h3>
+              <h3>{selectedDestination ? `${selectedDestination.city}, ${selectedDestination.state}` : "Choose a destination"}</h3>
             </div>
           </article>
 
@@ -307,7 +410,7 @@ function ItineraryPlanner() {
                 resetForm();
               }}
             >
-              {[1, 2, 3, 4, 5, 6].map((days) => (
+              {[1, 2, 3, 4, 5, 6, 7].map((days) => (
                 <option key={days} value={days}>
                   {days} {days === 1 ? "Day" : "Days"}
                 </option>
@@ -448,7 +551,6 @@ function ItineraryPlanner() {
                                 cost: event.target.value,
                               })
                             }
-                            required
                           />
                         </label>
 
@@ -508,11 +610,11 @@ function ItineraryPlanner() {
 
                       <div className="activity-card-bottom">
                         <span className="activity-category">
-                          {item.cost === 0
+                          {item.cost === null ? "Price unavailable" : item.cost === 0
                             ? "Free activity"
                             : "Estimated expense"}
                         </span>
-                        <strong>${item.cost.toFixed(2)}</strong>
+                        <strong>{item.cost === null ? "N/A" : `$${item.cost.toFixed(2)}`}</strong>
                       </div>
                     </>
                   )}
@@ -599,7 +701,6 @@ function ItineraryPlanner() {
                       cost: event.target.value,
                     })
                   }
-                  required
                 />
               </label>
 
