@@ -807,3 +807,96 @@
   }
 
 }
+
+/* Modern destination dropdown */
+
+.destination-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.destination-selector label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #183b2b;
+}
+
+.destination-selector select {
+  width: 100%;
+  max-width: 380px;
+  padding: 14px 44px 14px 18px;
+  border: 1px solid #d6e3d7;
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: #183b2b;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.destination-selector select:hover {
+  border-color: #82a947;
+}
+
+.destination-selector select:focus {
+  outline: none;
+  border-color: #82a947;
+  box-shadow: 0 0 0 3px rgba(130, 169, 71, 0.18);
+}
+
+.destination-selector select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Trip duration slider */
+
+.duration-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
+  padding: 20px 24px;
+  background: #f4f8f1;
+  border: 1px solid #e0eadb;
+  border-radius: 16px;
+}
+
+.duration-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.duration-slider-header label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #183b2b;
+}
+
+.duration-value {
+  background: #183b2b;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.duration-selector input[type="range"] {
+  width: 100%;
+  accent-color: #82a947;
+  cursor: pointer;
+}
+
+.duration-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #647568;
+  font-size: 12px;
+  font-weight: 600;
+}
