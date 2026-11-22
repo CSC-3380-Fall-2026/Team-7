@@ -334,7 +334,7 @@ function ItineraryPlanner() {
           </div>
         </header>
 
-        <div className="duration-selector">
+        <div className="destination-selector">
           <label htmlFor="destination-select">Choose Destination: </label>
           <select
             id="destination-select"
@@ -399,24 +399,36 @@ function ItineraryPlanner() {
             </span>
           </div>
 
-          <div className="duration-selector">
-            <span>Choose Trip Duration:</span>
+        <div className="duration-selector">
+          <div className="duration-slider-header">
+            <label htmlFor="trip-duration">
+              Choose Trip Duration
+            </label>
 
-            <select
-              value={tripDuration}
-              onChange={(event) => {
-                setTripDuration(Number(event.target.value));
-                setSelectedDay(1);
-                resetForm();
-              }}
-            >
-              {[1, 2, 3, 4, 5, 6, 7].map((days) => (
-                <option key={days} value={days}>
-                  {days} {days === 1 ? "Day" : "Days"}
-                </option>
-              ))}
-            </select>
+            <span className="duration-value">
+              {tripDuration} {tripDuration === 1 ? "Day" : "Days"}
+            </span>
           </div>
+
+          <input
+            id="trip-duration"
+            type="range"
+            min="1"
+            max="7"
+            step="1"
+            value={tripDuration}
+            onChange={(event) => {
+              setTripDuration(Number(event.target.value));
+              setSelectedDay(1);
+              resetForm();
+            }}
+          />
+
+          <div className="duration-range-labels">
+            <span>1 Day</span>
+            <span>7 Days</span>
+          </div>
+        </div>
 
           <div className="itinerary-day-tabs">
             {Array.from(
