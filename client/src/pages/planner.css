@@ -500,6 +500,39 @@
   font-size: 24px;
 }
 
+.activity-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-activity-button,
+.remove-activity-button {
+  padding: 8px 13px;
+  border: none;
+  border-radius: 8px;
+  background: #edf3e8;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-activity-button {
+  background: #edf3e8;
+  color:#285b40;
+}
+
+.edit-activity-button:hover {
+  background: #dce9d5;
+}
+
+.remove-activity-button {
+  background: #a33b32;
+  color: red;
+}
+.remove-activity-button:hover {
+  background: #842b24;
+}
+
 /* ========================================
    RESPONSIVE DESIGN
 ======================================== */
