@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "vitest run",
-  "dev": "tsx watch src/index.ts"
-},
+    "test": "vitest run",
+    "dev": "tsx watch src/index.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

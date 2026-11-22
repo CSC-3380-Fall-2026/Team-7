@@ -8,6 +8,23 @@ interface Destination {
   description: string;
   duration: string;
 }
+const cityImages: Record<string, string> = {
+     "Atlanta": "/destinations/Atlanta.png",
+    "Chicago": "/destinations/Chicago.png",
+    "Denver": "/destinations/Denver.png",
+    "Honolulu": "/destinations/Honolulu.png",
+    "Houston": "/destinations/Houston.png",
+    "Las Vegas": "/destinations/Las Vegas.png",
+    "Los Angeles": "/destinations/Los Angeles.png",
+    "Miami": "/destinations/Miami.png",
+    "Nashville": "/destinations/Nashville.png",
+    "New Orleans": "/destinations/New Orleans.png",
+    "New York City": "/destinations/New York City.png",
+    "Orlando": "/destinations/Orlando.png",
+    "San Francisco": "/destinations/San Francisco.png",
+    "Seattle": "/destinations/Seattle.png",
+    "Washington": "/destinations/Washington.png",
+};
 
 function Discover(){
 
@@ -104,7 +121,7 @@ function Discover(){
             <section className="discover-card">
                 <img
                 className="discover-image"
-                src={ `/destinations/${encodeURIComponent(currentDestination.city)}.png` }
+                    src={cityImages[currentDestination.city] || "/destinations/Atlanta.png"}
                 alt={`${currentDestination.city}, ${currentDestination.state}`}
                 />
                 <div className="discover-card-content">
